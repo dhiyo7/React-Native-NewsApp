@@ -22,6 +22,6 @@ export async function getArticles() {
     return result.articles;
   }
   catch{
-
+    throw error;
   }
 }

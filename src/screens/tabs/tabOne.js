@@ -12,9 +12,10 @@ import {
   Right,
   Button,
 } from 'native-base';
-import {Alert} from 'react-native';
+import {Alert, View, ActivityIndicator} from 'react-native';
 
 import {getArticles} from '../../services/News';
+import DataItem from '../../component/dataItem';
 
 export default class ListThumbnailExample extends Component {
   constructor(props) {
@@ -41,124 +42,25 @@ export default class ListThumbnailExample extends Component {
   }
 
   render() {
-      console.log(this.state.data);
-      
+    console.log(this.state.data);
+
+    let view = this.state.isLoading ? (
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <ActivityIndicator animating={this.state.isLoading} color="#00f0ff" />
+        <Text style={{marginTop: 10}} children="Silahkan Tunggu . . . " />
+      </View>
+    ) : (
+      <List
+        dataArray={this.state.data}
+        renderRow={item => {
+          return <DataItem onPress={this.handleItemDataOnPress} data={item} />;
+        }}
+      />
+    );
+
     return (
-      <Container>
-        <Content>
-          <List>
-            <ListItem thumbnail>
-              <Left>
-                <Thumbnail
-                  square
-                  source={{
-                    uri:
-                      'https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png',
-                  }}
-                />
-              </Left>
-              <Body>
-                <Text>Title</Text>
-                <Text note numberOfLines={2}>
-                  Its time to build a difference . .
-                </Text>
-              </Body>
-              <Right>
-                <Button transparent>
-                  <Text>View</Text>
-                </Button>
-              </Right>
-            </ListItem>
-            <ListItem thumbnail>
-              <Left>
-                <Thumbnail
-                  square
-                  source={{
-                    uri:
-                      'https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png',
-                  }}
-                />
-              </Left>
-              <Body>
-                <Text>Title</Text>
-                <Text note numberOfLines={2}>
-                  Its time to build a difference . .
-                </Text>
-              </Body>
-              <Right>
-                <Button transparent>
-                  <Text>View</Text>
-                </Button>
-              </Right>
-            </ListItem>
-            <ListItem thumbnail>
-              <Left>
-                <Thumbnail
-                  square
-                  source={{
-                    uri:
-                      'https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png',
-                  }}
-                />
-              </Left>
-              <Body>
-                <Text>Title</Text>
-                <Text note numberOfLines={2}>
-                  Its time to build a difference . .
-                </Text>
-              </Body>
-              <Right>
-                <Button transparent>
-                  <Text>View</Text>
-                </Button>
-              </Right>
-            </ListItem>
-            <ListItem thumbnail>
-              <Left>
-                <Thumbnail
-                  square
-                  source={{
-                    uri:
-                      'https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png',
-                  }}
-                />
-              </Left>
-              <Body>
-                <Text>Title</Text>
-                <Text note numberOfLines={2}>
-                  Its time to build a difference . .
-                </Text>
-              </Body>
-              <Right>
-                <Button transparent>
-                  <Text>View</Text>
-                </Button>
-              </Right>
-            </ListItem>
-            <ListItem thumbnail>
-              <Left>
-                <Thumbnail
-                  square
-                  source={{
-                    uri:
-                      'https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png',
-                  }}
-                />
-              </Left>
-              <Body>
-                <Text>Title</Text>
-                <Text note numberOfLines={2}>
-                  Its time to build a difference . .
-                </Text>
-              </Body>
-              <Right>
-                <Button transparent>
-                  <Text>View</Text>
-                </Button>
-              </Right>
-            </ListItem>
-          </List>
-        </Content>
+      <Container style={{flex: 1}}>
+        <Content>{view}</Content>
       </Container>
     );
   }
