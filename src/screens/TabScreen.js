@@ -22,7 +22,7 @@ export default class TabsExample extends Component {
           androidStatusBarColor="#2ecc71">
           <Left />
           <Body>
-            <Title>Plug & Plant</Title>
+            <Title>News App</Title>
           </Body>
           <Right />
         </Header>
@@ -31,7 +31,7 @@ export default class TabsExample extends Component {
             tabStyle={{backgroundColor: '#2ecc71'}}
             activeTabStyle={{backgroundColor: '#2ecc71'}}
             activeTextStyle={{color: '#fff'}} textStyle={{color:'white'}}
-            heading="News">
+            heading="Terkini">
             <Tab1/>
           </Tab>
           <Tab

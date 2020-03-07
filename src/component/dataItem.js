@@ -7,7 +7,9 @@ import {
   Text,
   Right,
   Button,
+  View,
 } from 'native-base';
+import TimeAgo from './time'
 
 class DataItem extends Component {
   constructor(props) {
@@ -31,7 +33,20 @@ class DataItem extends Component {
         </Left>
         <Body>
           <Text numberOfLines={2}>{this.data.title}</Text>
-        <Text note numberOfLines={2}>{this.data.description}</Text>
+          <Text note numberOfLines={2}>
+            {this.data.description}
+          </Text>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              marginTop: 8,
+              marginLeft: 0,
+            }}>
+              <Text note>{this.data.source.name}</Text>
+              <TimeAgo time={this.data.publishedAt}/>
+
+            </View>
         </Body>
         <Right>
           <Button transparent>
@@ -43,4 +58,3 @@ class DataItem extends Component {
   }
 }
 export default DataItem;
-

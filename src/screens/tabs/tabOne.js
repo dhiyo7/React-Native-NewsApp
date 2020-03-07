@@ -1,16 +1,9 @@
 import React, {Component} from 'react';
 import {
   Container,
-  Header,
   Content,
   List,
-  ListItem,
-  Thumbnail,
   Text,
-  Left,
-  Body,
-  Right,
-  Button,
 } from 'native-base';
 import {Alert, View, ActivityIndicator} from 'react-native';
 
@@ -46,7 +39,7 @@ export default class ListThumbnailExample extends Component {
 
     let view = this.state.isLoading ? (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <ActivityIndicator animating={this.state.isLoading} color="#00f0ff" />
+        <ActivityIndicator style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} animating={this.state.isLoading} color="#00f0ff" />
         <Text style={{marginTop: 10}} children="Silahkan Tunggu . . . " />
       </View>
     ) : (
@@ -59,8 +52,8 @@ export default class ListThumbnailExample extends Component {
     );
 
     return (
-      <Container style={{flex: 1}}>
-        <Content>{view}</Content>
+      <Container>
+        <Content style={{flex: 1}}>{view}</Content>
       </Container>
     );
   }
